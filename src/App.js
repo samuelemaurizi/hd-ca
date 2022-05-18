@@ -1,24 +1,22 @@
-import logo from './logo.svg';
+import { Routes, Route } from 'react-router-dom';
+
+// COMPONENTS
+import Main from './screens/Main';
+import HomeScreen from './screens/HomeScreen';
+import FirstStep from './screens/FirstStep';
+import NotFoundScreen from './screens/NotFoundScreen';
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route element={<Main />}>
+        <Route path='/' element={<HomeScreen />} />
+        <Route path='firststep' element={<FirstStep />} />
+        <Route path='*' element={<NotFoundScreen />} />
+      </Route>
+    </Routes>
   );
 }
 

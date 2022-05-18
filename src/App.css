@@ -1,38 +1,87 @@
-.App {
+:root {
+  --clr-gray80: hsl(0, 0%, 20%);
+  --clr-gray60: hsl(0, 0%, 40%);
+  --clr-gray40: hsl(0, 0%, 60%);
+  --clr-gray20: hsl(0, 0%, 80%);
+  --clr-gray10: hsl(0, 0%, 90%);
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-info: hsl(209, 86%, 55%);
+  --clr-info60: hsl(207, 100%, 40%);
+  --clr-info70: hsl(207, 100%, 30%);
+}
+
+/* 
+  ////// Not Found Screen - start
+*/
+.main404 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   text-align: center;
+  background-image: url(../src/static//img/not-found.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffffff;
+  filter: brightness(1.7);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main404__background-pattern {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQYV2NkYGD4z8DAwMgABXAGNgGwSgwVAFbmAgXQdISfAAAAAElFTkSuQmCC)
+    repeat;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main404__content {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  padding: 1rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-.App-link {
-  color: #61dafb;
+.main404__content h1 {
+  font-size: clamp(8rem, 10vw, 10rem);
+  font-weight: 900;
+  line-height: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.main404__content h1:nth-of-type(2) {
+  font-size: clamp(2.5rem, 3vw, 3.15rem);
+  white-space: nowrap;
 }
+
+.main404__content h4 {
+  margin-top: max(3rem, 8vh);
+  margin-bottom: 2rem;
+  font-size: clamp(1.75rem, 3vw, 2.15rem);
+}
+
+.main404__content a {
+  width: min(100%, 29ch);
+  background: var(--clr-info60);
+  font-size: 1rem;
+}
+
+.main404__content a:hover {
+  background-color: var(--clr-info70);
+}
+/* 
+  ////// Not Found Screen - end
+*/
