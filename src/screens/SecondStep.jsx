@@ -17,7 +17,7 @@ import Checkbox from '@mui/material/Checkbox';
 
 const SecondStep = () => {
   const githubContext = useContext(GithubContext);
-  const { userData, setUserData, loading } = githubContext;
+  const { userData, setUserData } = githubContext;
 
   const navigate = useNavigate();
 
@@ -26,9 +26,14 @@ const SecondStep = () => {
     checked: false,
   });
   const { email, checked } = formData;
-  const [disabled, setDisabled] = useState(false);
 
   const isValid = isObjValueValid(formData);
+  const [disabled, setDisabled] = useState(false);
+
+  // @DESC  if userData in context set form with that data
+  useEffect(() => {
+    if (userData) setFormData(userData);
+  }, [userData]);
 
   useEffect(() => {
     if (isValid) setDisabled(false);
@@ -57,7 +62,7 @@ const SecondStep = () => {
     <Paper
       elevation={3}
       sx={{
-        outline: '1px solid pink',
+        // outline: '1px solid pink',
         width: '100%',
         maxWidth: '70%',
       }}

@@ -13,6 +13,8 @@ import {
 
 const GithubState = (props) => {
   const initialState = {
+    stepOne: {},
+    setpTwo: {},
     userData: {},
     user: {},
     loading: false,
@@ -20,7 +22,7 @@ const GithubState = (props) => {
 
   const [state, dispatch] = useReducer(GithubReducer, initialState);
 
-  console.log('USER DATA', state.userData);
+  // console.log('USER DATA', state.userData);
 
   const setUserData = (data) => {
     setLoading();
@@ -35,7 +37,7 @@ const GithubState = (props) => {
     dispatch({ type: SET_GITHUB_USERNAME });
   };
 
-  const getUser = async (username) => {
+  const getGithubUser = async (username) => {
     setLoading();
 
     const res = await axios.get(`https://api.github.com/users/${username}`, {
@@ -62,7 +64,7 @@ const GithubState = (props) => {
         loading: state.loading,
         setUserData,
         setGithubUsername,
-        getUser,
+        getGithubUser,
         clearUsers,
       }}
     >

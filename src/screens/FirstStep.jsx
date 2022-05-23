@@ -28,7 +28,7 @@ const FirstStep = () => {
   const isValid = isObjValueValid(formData);
   const [disabled, setDisabled] = useState(false);
 
-  // DESC  if userData in context set form with that data
+  // @DESC  if userData in context set form with that data
   useEffect(() => {
     if (userData) setFormData(userData);
   }, [userData]);

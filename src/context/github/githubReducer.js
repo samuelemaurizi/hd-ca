@@ -11,11 +11,10 @@ const githubReducer = (state, action) => {
 
   switch (type) {
     case SET_USER_DATA:
-      // console.log('reducer', state.userData);
+      console.log('reducer', payload);
       return {
         ...state,
-        userData: { ...state.userData, payload },
-        // userData: payload,
+        userData: { ...state.userData, ...payload },
         loading: false,
       };
     case GET_GITHUB_USER:
