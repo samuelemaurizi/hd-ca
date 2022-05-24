@@ -5,10 +5,10 @@ import GithubContext from './githubContext';
 import GithubReducer from './githubReducer';
 import {
   SET_USER_DATA,
-  SET_GITHUB_USERNAME,
   GET_GITHUB_USER,
   CLEAR_GITHUB_USER,
   SET_LOADING,
+  SET_ERROR,
 } from '../types';
 
 const GithubState = (props) => {
@@ -18,11 +18,10 @@ const GithubState = (props) => {
     userData: {},
     user: {},
     loading: false,
+    error: null,
   };
 
   const [state, dispatch] = useReducer(GithubReducer, initialState);
-
-  // console.log('USER DATA', state.userData);
 
   const setUserData = (data) => {
     setLoading();
@@ -33,23 +32,26 @@ const GithubState = (props) => {
     });
   };
 
-  const setGithubUsername = (name) => {
-    dispatch({ type: SET_GITHUB_USERNAME });
-  };
-
   const getGithubUser = async (username) => {
     setLoading();
 
-    const res = await axios.get(`https://api.github.com/users/${username}`, {
-      headers: {
-        Authorization: 'token' + process.env.REACT_APP_TOKEN,
-      },
-    });
+    try {
+      const res = await axios.get(`https://api.github.com/users/${username}`, {
+        headers: {
+          Authorization: 'token' + process.env.REACT_APP_TOKEN,
+        },
+      });
 
-    dispatch({
-      type: GET_GITHUB_USER,
-      payload: res.data,
-    });
+      dispatch({
+        type: GET_GITHUB_USER,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: SET_ERROR,
+        payload: error.response,
+      });
+    }
   };
 
   const clearUsers = () => dispatch({ type: CLEAR_GITHUB_USER });
@@ -62,8 +64,8 @@ const GithubState = (props) => {
         userData: state.userData,
         user: state.user,
         loading: state.loading,
+        error: state.error,
         setUserData,
-        setGithubUsername,
         getGithubUser,
         clearUsers,
       }}

@@ -14,12 +14,8 @@ const HomeScreen = () => {
         sx={{ width: '100%', maxWidth: '76ch' }}
         align='center'
       >
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, maiores
-        sed? Porro consequuntur sunt debitis repudiandae voluptatibus at
-        doloremque nostrum asperiores dolores, adipisci facere quisquam
-        repellendus voluptas perferendis maiores ipsam tempore odio culpa
-        praesentium? Doloribus et laboriosam, repellat, molestiae modi at qui
-        alias sed quod necessitatibus minima beatae aliquam quidem!
+        Here you can find information about Github users. Enter the user's name
+        to view them and some information about yourself.
       </Typography>
       <Button
         component={Link}

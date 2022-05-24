@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 import GithubContext from '../context/github/githubContext';
 
@@ -25,17 +26,18 @@ const FirstStep = () => {
   });
   const { firstName, lastName, githubUsername } = formData;
 
-  const isValid = isObjValueValid(formData);
   const [disabled, setDisabled] = useState(false);
 
   // @DESC  if userData in context set form with that data
   useEffect(() => {
-    if (userData) setFormData(userData);
+    if (userData) {
+      setFormData(userData);
+    }
   }, [userData]);
 
   useEffect(() => {
-    if (isValid) setDisabled(false);
-  }, [isValid]);
+    setDisabled(!isObjValueValid(formData));
+  }, [formData]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -53,60 +55,65 @@ const FirstStep = () => {
   };
 
   return (
-    <Paper
-      elevation={3}
-      sx={{
-        outline: '1px solid pink',
-        width: '100%',
-        maxWidth: '70%',
-      }}
+    <motion.div
+      initial={{ x: '100vw' }}
+      animate={{ x: 0 }}
+      className='motion-div'
     >
-      <ValidatorForm onSubmit={handleSubmit} onError={handleError}>
-        <Stack spacing={3}>
-          <TextValidator
-            placeholder='First Name'
-            name='firstName'
-            value={firstName || ''}
-            onChange={handleChange}
-            validators={['required']}
-            errorMessages={['this field is required']}
-            fullWidth
-          />
-          <TextValidator
-            placeholder='Last Name'
-            name='lastName'
-            value={lastName || ''}
-            onChange={handleChange}
-            validators={['required']}
-            errorMessages={['this field is required']}
-            disabled={false}
-            fullWidth
-          />
-          <TextValidator
-            placeholder='Github Username'
-            name='githubUsername'
-            value={githubUsername || ''}
-            onChange={handleChange}
-            validators={['required']}
-            errorMessages={['this field is required']}
-            fullWidth
-          />
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Button component={Link} to='/' variant='contained'>
-              Prev
-            </Button>
-            <Button type='submit' variant='contained' disabled={disabled}>
-              Next
-            </Button>
-          </Box>
-        </Stack>
-      </ValidatorForm>
-    </Paper>
+      <Paper
+        elevation={3}
+        sx={{
+          padding: '2rem',
+        }}
+      >
+        <ValidatorForm onSubmit={handleSubmit} onError={handleError}>
+          <Stack spacing={3}>
+            <TextValidator
+              placeholder='First Name'
+              name='firstName'
+              value={firstName || ''}
+              onChange={handleChange}
+              validators={['required']}
+              errorMessages={['this field is required']}
+              fullWidth
+            />
+            <TextValidator
+              placeholder='Last Name'
+              name='lastName'
+              value={lastName || ''}
+              onChange={handleChange}
+              validators={['required']}
+              errorMessages={['this field is required']}
+              disabled={false}
+              fullWidth
+            />
+            <TextValidator
+              placeholder='Github Username'
+              name='githubUsername'
+              value={githubUsername || ''}
+              onChange={handleChange}
+              validators={['required']}
+              errorMessages={['this field is required']}
+              fullWidth
+            />
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+              className='btns-form-container'
+            >
+              <Button component={Link} to='/' variant='contained'>
+                Prev
+              </Button>
+              <Button type='submit' variant='contained' disabled={disabled}>
+                Next
+              </Button>
+            </Box>
+          </Stack>
+        </ValidatorForm>
+      </Paper>
+    </motion.div>
   );
 };
 

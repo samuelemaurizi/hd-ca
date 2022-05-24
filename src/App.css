@@ -10,6 +10,10 @@
   --clr-info70: hsl(207, 100%, 30%);
 }
 
+body {
+  overflow-x: hidden;
+}
+
 /* 
   ////// Not Found Screen - start
 */
@@ -85,3 +89,34 @@
 /* 
   ////// Not Found Screen - end
 */
+
+.motion-div {
+  padding: 2rem 0.25rem;
+  width: max(60%, 300px);
+  width: clamp(300px, 100%, 60%);
+}
+
+@media (max-width: 600px) {
+  .MuiBox-root.btns-form-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .MuiBox-root.checkbox-container {
+    align-items: center;
+    padding-inline: 0;
+  }
+
+  .MuiFormControlLabel-root.checkbox {
+    margin-inline: 0;
+    margin-top: 0.5rem;
+  }
+
+  .MuiFormControlLabel-root.checkbox-container span {
+    font-size: 14px;
+  }
+
+  .MuiButton-root.last-prev-btn {
+    width: 100%;
+  }
+}

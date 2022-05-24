@@ -1,9 +1,9 @@
 import {
   SET_USER_DATA,
-  SET_GITHUB_USERNAME,
   GET_GITHUB_USER,
   SET_LOADING,
   CLEAR_GITHUB_USER,
+  SET_ERROR,
 } from '../types';
 
 const githubReducer = (state, action) => {
@@ -11,7 +11,6 @@ const githubReducer = (state, action) => {
 
   switch (type) {
     case SET_USER_DATA:
-      console.log('reducer', payload);
       return {
         ...state,
         userData: { ...state.userData, ...payload },
@@ -33,6 +32,12 @@ const githubReducer = (state, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case SET_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false,
       };
     default:
       return state;
