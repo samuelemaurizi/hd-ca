@@ -6,7 +6,7 @@ HD FE CA
 
 ### Description
 
-Based on the principle of the K.I.S.S. this application allows you to view some information about the Github username entered in the search field.
+Based on the principle of K.I.S.S. this application allows you to view some information about the Github username entered in the search field.
 
 The application consists of a multistep form where at the end of the process a card is shown with the details of the Github user profile.
 
